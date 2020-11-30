@@ -1,22 +1,15 @@
-<article>
-    <h1>Biden for president</h1>
-    <h4>A crushing win over D. Trump</h4>
+<article *ngIf="article">
+    <h1>{{article.title}} <!-- interpolation --></h1>
+    <h4>{{article.subtitle}}</h4>
     <figure>
-        <img src="https://images.pexels.com/photos/1202723/pexels-photo-1202723.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=100&w=134"
-            alt="flag America">
-        <figcaption>Image source: Pexels</figcaption>
+        <img src="{{article.imageUrl}}"
+            alt="{{article.imageCaption}}">
+        <figcaption>{{article.imageCaption}}</figcaption>
     </figure>
     <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur voluptas sequi voluptatum pariatur! Quae cumque
-        quidem dolor maxime enim debitis omnis nemo facilis sequi autem? Quae tenetur, repellat vero deleniti vitae
-        dolores? Cum tempore, mollitia provident placeat fugit earum, sint, quae iusto optio ea officiis consectetur sit
-        necessitatibus itaque explicabo?
+        {{article.content}}
     </p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur voluptas sequi voluptatum pariatur! Quae cumque
-        quidem dolor maxime enim debitis omnis nemo facilis sequi autem? Quae tenetur, repellat vero deleniti vitae
-        dolores? Cum tempore, mollitia provident placeat fugit earum, sint, quae iusto optio ea officiis consectetur sit
-        necessitatibus itaque explicabo?</p>
     <footer>
-        <p>Author: Michaël Cloots, Published: 28/11/2020</p>
+        <p>Author: {{article.author}}, Published: {{article.publishDate}}</p>
     </footer>
 </article>
