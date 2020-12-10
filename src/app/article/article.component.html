@@ -6,9 +6,13 @@
             alt="{{article.imageCaption}}">
         <figcaption>{{article.imageCaption}}</figcaption>
     </figure>
-    <p>
+    <p *ngIf="!isDetail">
+        {{article.content | shortenContent : 250}}
+    </p>
+    <p *ngIf="isDetail">
         {{article.content}}
     </p>
+    <p><button (click)="detail(article.id)">Read more</button></p>
     <footer>
         <p>Author: {{article.author}}, Published: {{article.publishDate}}</p>
     </footer>
