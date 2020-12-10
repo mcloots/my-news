@@ -8,9 +8,10 @@ import { Article } from '../article';
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
-  @Input() article: Article = {id: 0, title: "", subtitle: "", imageUrl: "", imageCaption: "", content: "", author: "", publishDate: ""};
+  @Input() article: Article = { id: 0, title: "", subtitle: "", imageUrl: "", imageCaption: "", content: "", author: "", publishDate: "" };
   @Input() isDetail: boolean = false;
-  
+  @Input() backRoute: string = "";
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -19,5 +20,9 @@ export class ArticleComponent implements OnInit {
   detail(id: number) {
     this.router.navigate(['/article', id]);
     // this.router.navigate(['/article', id, {test: "lala"}]);
+  }
+
+  back() {
+      this.router.navigate([this.backRoute]);
   }
 }
