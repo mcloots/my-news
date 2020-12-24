@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { ShortenContentPipe } from './shorten-content.pipe';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,8 @@ import { ShortenContentPipe } from './shorten-content.pipe';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
