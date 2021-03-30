@@ -10,6 +10,9 @@ import { ArticleDetailComponent } from './article-detail/article-detail.componen
 import { ShortenContentPipe } from './shorten-content.pipe';
 
 import { HttpClientModule } from '@angular/common/http';
+import { CategoryFormComponent } from './category-form/category-form.component';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,12 +21,15 @@ import { HttpClientModule } from '@angular/common/http';
     MenuComponent,
     HomeComponent,
     ArticleDetailComponent,
-    ShortenContentPipe
+    ShortenContentPipe,
+    CategoryFormComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

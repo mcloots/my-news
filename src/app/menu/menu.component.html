@@ -20,7 +20,16 @@
             </li>
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="/article">Article</a>
-            </li>         
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" routerLink="/admin/category">Categories</a>
+                  <a class="dropdown-item" routerLink="/admin/status">Statuses</a>
+                </div>
+              </li>         
         </ul>
     </div>
 </nav>
