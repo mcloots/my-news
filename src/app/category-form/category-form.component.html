@@ -1,6 +1,6 @@
 
 <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
-  {{errorMessage | json}}
+  {{errorMessage}}
 </div>
 <form *ngIf="category" (ngSubmit)="onSubmit()" #categoryForm="ngForm">
   <div class="form-group">

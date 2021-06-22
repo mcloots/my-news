@@ -14,8 +14,8 @@ export class ArticleService {
   }
 
   getArticles(): Observable<Article[]> {
-    return timer(1, 3000).pipe(switchMap(() => this.httpClient.get<Article[]>("http://localhost:3000/articles")));
-   // return this.httpClient.get<Article[]>("http://localhost:3000/articles");
+    //return timer(1, 3000).pipe(switchMap(() => this.httpClient.get<Article[]>("http://localhost:3000/articles")));
+   return this.httpClient.get<Article[]>("http://localhost:3000/articles");
   }
 
   getArticleById(id: number): Observable<Article> {

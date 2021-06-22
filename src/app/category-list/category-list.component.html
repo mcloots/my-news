@@ -1,5 +1,5 @@
 <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
-    {{errorMessage | json}}
+    {{errorMessage}}
   </div>
 <button type="button" class="btn btn-success addBtn" (click)="add()"><i class="fas fa-plus"></i> Add new category</button>
 <table class="table" *ngIf="categories && categories.length > 0">
