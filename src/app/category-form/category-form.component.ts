@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from '../category';
 import { CategoryService } from '../category.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-category-form',
   templateUrl: './category-form.component.html',
   styleUrls: ['./category-form.component.scss']
 })
-export class CategoryFormComponent implements OnInit {
+export class CategoryFormComponent implements OnInit, OnDestroy {
   isAdd: boolean = false;
   isEdit: boolean = false;
   categoryId: number = 0;
@@ -18,13 +19,17 @@ export class CategoryFormComponent implements OnInit {
   isSubmitted: boolean = false;
   errorMessage: string = "";
 
+  category$: Subscription = new Subscription();
+  postCategory$: Subscription = new Subscription();
+  putCategory$: Subscription = new Subscription();
+
   constructor(private router: Router, private categoryService: CategoryService) {
     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode === 'add';
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
     this.categoryId = +this.router.getCurrentNavigation()?.extras.state?.id;
 
     if (this.categoryId != null && this.categoryId > 0) {
-      this.categoryService.getCategoryById(this.categoryId).subscribe(result => this.category = result);
+     this.category$ = this.categoryService.getCategoryById(this.categoryId).subscribe(result => this.category = result);
     }
 
   }
@@ -32,10 +37,16 @@ export class CategoryFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+    this.category$.unsubscribe();
+    this.postCategory$.unsubscribe();
+    this.putCategory$.unsubscribe();
+  }
+
   onSubmit() {
     this.isSubmitted = true;
     if (this.isAdd) {
-      this.categoryService.postCategory(this.category).subscribe(result => {
+     this.postCategory$ = this.categoryService.postCategory(this.category).subscribe(result => {
         //all went well
         this.router.navigateByUrl("/admin/category");
       },
@@ -44,7 +55,7 @@ export class CategoryFormComponent implements OnInit {
         });
     }
     if (this.isEdit) {
-      this.categoryService.putCategory(this.categoryId, this.category).subscribe(result => {
+     this.putCategory$ = this.categoryService.putCategory(this.categoryId, this.category).subscribe(result => {
         //all went well
         this.router.navigateByUrl("/admin/category");
       },
