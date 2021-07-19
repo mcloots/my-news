@@ -30,7 +30,7 @@ export class CategoryService {
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
     //return this.httpClient.put<Category>("http://localhost:3000/categories/", category, {headers: headers});
-    return this.httpClient.put<Category>("http://localhost:3000/categoriess/" + id, category, {headers: headers});
+    return this.httpClient.put<Category>("http://localhost:3000/categories/" + id, category, {headers: headers});
   }
 
   deleteCategory(id: number): Observable<Category> {

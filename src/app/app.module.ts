@@ -12,7 +12,9 @@ import { ShortenContentPipe } from './shorten-content.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { CategoryListComponent } from './category-list/category-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StatusListComponent } from './status-list/status-list.component';
+import { StatusFormComponent } from './status-form/status-form.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +25,16 @@ import { FormsModule } from '@angular/forms';
     ArticleDetailComponent,
     ShortenContentPipe,
     CategoryFormComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    StatusListComponent,
+    StatusFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,4 +8,5 @@ export interface Article {
     author: string;
     publishDate: string;
     categoryId: number;
+    statusId: number;
 }
