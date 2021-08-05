@@ -4,7 +4,7 @@ import {Status} from '../status';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {StatusService} from '../status.service';
-import {createOneCapitalLetterValidator} from '../one-capital-letter-validator';
+import {createOneCapitalLetterValidator} from '../../../shared/one-capital-letter-validator';
 
 @Component({
   selector: 'app-status-form',

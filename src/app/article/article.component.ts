@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Article } from '../article';
+import { Article } from '../article/article';
 
 @Component({
   selector: 'app-article',

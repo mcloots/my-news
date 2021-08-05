@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Article } from '../article';
-import { ArticleService } from '../article.service';
+import { Article } from '../article/article';
+import { ArticleService } from '../article/article.service';
 import { Observable } from 'rxjs';
 
 @Component({
