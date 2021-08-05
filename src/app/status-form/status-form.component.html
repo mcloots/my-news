@@ -6,7 +6,7 @@
   <p>Form Status: {{ statusForm.status }}</p>
   <p>{{ nameChangeMessage }}</p>
 </div>
-<form *ngIf="status" (ngSubmit)="onSubmit()" [formGroup]="statusForm">
+<form (ngSubmit)="onSubmit()" [formGroup]="statusForm">
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" name="name" placeholder="Name" formControlName="name" minlength="2">
@@ -16,7 +16,7 @@
     <input type="checkbox" formControlName="active" id="active" class="mr-2">
     <label for="active">Active</label>
   </div>
-  <button type="button" class="btn btn-secondary mr-2" (click)="setDefaults()" >Set default values</button>
+<!--  <button type="button" class="btn btn-secondary mr-2" (click)="setDefaults()" >Set default values</button>-->
   <button type="submit" class="btn btn-primary" *ngIf="isAdd" [disabled]="!statusForm.valid || isSubmitted">Add</button>
   <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!statusForm.valid || isSubmitted">Save</button>
 </form>

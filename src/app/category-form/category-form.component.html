@@ -2,7 +2,7 @@
 <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
   {{errorMessage}}
 </div>
-<form *ngIf="category" (ngSubmit)="onSubmit()" #categoryForm="ngForm">
+<form (ngSubmit)="onSubmit()" #categoryForm="ngForm">
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="category.name"

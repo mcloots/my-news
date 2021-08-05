@@ -16,8 +16,6 @@ export class StatusFormComponent implements OnInit, OnDestroy {
   isEdit: boolean = false;
   statusId: number = 0;
 
-  status: Status = {id: 0, name: '', active: false};
-
   isSubmitted: boolean = false;
   errorMessage: string = '';
   nameChangeMessage: string = '';
@@ -39,7 +37,6 @@ export class StatusFormComponent implements OnInit, OnDestroy {
 
     if (this.statusId != null && this.statusId > 0) {
       this.status$ = this.statusService.getStatusById(this.statusId).subscribe(result => {
-        this.status = result;
         this.statusForm.setValue({
           name: result.name,
           active: result.active
