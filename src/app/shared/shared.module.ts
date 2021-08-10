@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ShortenContentPipe} from './shorten-content.pipe';
-
 
 
 @NgModule({
@@ -24,4 +23,5 @@ import {ShortenContentPipe} from './shorten-content.pipe';
     ShortenContentPipe
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

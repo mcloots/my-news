@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
 import {CategoryModule} from './category/category.module';
 import {StatusModule} from './status/status.module';
-
 
 
 @NgModule({
@@ -17,4 +16,5 @@ import {StatusModule} from './status/status.module';
     StatusModule
   ]
 })
-export class AdminModule { }
+export class AdminModule {
+}

@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {ArticleComponent} from './article.component';
 import {ArticleDetailComponent} from './article-detail/article-detail.component';
 import {ArticleService} from './article.service';
 import {SharedModule} from '../shared/shared.module';
-
 
 
 @NgModule({
@@ -22,4 +21,5 @@ import {SharedModule} from '../shared/shared.module';
     ArticleService
   ]
 })
-export class ArticleModule { }
+export class ArticleModule {
+}
