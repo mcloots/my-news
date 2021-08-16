@@ -3,6 +3,7 @@ import {StatusListComponent} from './status-list/status-list.component';
 import {StatusFormComponent} from './status-form/status-form.component';
 import {SharedModule} from '../../shared/shared.module';
 import {StatusService} from './status.service';
+import {StatusRoutingModule} from './status-routing.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import {StatusService} from './status.service';
     StatusFormComponent
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    StatusRoutingModule
   ],
   exports: [
     StatusListComponent,
