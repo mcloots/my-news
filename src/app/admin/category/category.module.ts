@@ -4,6 +4,8 @@ import {CategoryFormComponent} from './category-form/category-form.component';
 import {SharedModule} from '../../shared/shared.module';
 import {CategoryService} from './category.service';
 import {CategoryRoutingModule} from './category-routing.module';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {SecurityInterceptor} from '../../security/security.interceptor';
 
 
 @NgModule({
@@ -20,7 +22,12 @@ import {CategoryRoutingModule} from './category-routing.module';
     CategoryFormComponent
   ],
   providers: [
-    CategoryService
+    CategoryService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SecurityInterceptor,
+      multi: true
+    }
   ]
 })
 export class CategoryModule {

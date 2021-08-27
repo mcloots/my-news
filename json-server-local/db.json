@@ -1,4 +1,16 @@
 {
+  "users": [
+    {
+      "email": "admin@mail.com",
+      "password": "$2a$10$NcqZhDfM.h/Knlasn5djT.e514sqotWmUsBYdq/AfoQGZtRTfiY72",
+      "id": 1
+    },
+    {
+      "email": "user@mail.com",
+      "password": "$2a$10$MqIlXrjlyjE8A1TmZ9Nhqe6RCO8tStIX.u69DYmg5.WjHab3oQHY6",
+      "id": 2
+    }
+  ],
   "articles": [
     {
       "id": 1,
@@ -28,41 +40,49 @@
   "categories": [
     {
       "id": 1,
-      "name": "sports"
+      "name": "sports",
+      "userId": 1
     },
     {
       "id": 2,
-      "name": "economy"
+      "name": "economy",
+      "userId": 1
     },
     {
       "id": 3,
-      "name": "politics"
+      "name": "politics",
+      "userId": 1
     },
     {
       "id": 4,
-      "name": "weather"
+      "name": "weather",
+      "userId": 1
     }
   ],
   "statuses": [
     {
       "name": "draft",
       "active": true,
-      "id": 1
+      "id": 1,
+      "userId": 1
     },
     {
       "name": "To review",
       "active": true,
-      "id": 2
+      "id": 2,
+      "userId": 1
     },
     {
       "id": 3,
       "name": "published",
-      "active": true
+      "active": true,
+      "userId": 1
     },
     {
       "name": "Concept",
       "active": true,
-      "id": 4
+      "id": 4,
+      "userId": 1
     }
   ]
 }
