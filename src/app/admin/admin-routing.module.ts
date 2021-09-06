@@ -4,6 +4,7 @@ import {StatusListComponent} from './status/status-list/status-list.component';
 import {CategoryListComponent} from './category/category-list/category-list.component';
 import {StatusFormComponent} from './status/status-form/status-form.component';
 import {CategoryFormComponent} from './category/category-form/category-form.component';
+import {AuthGuard} from '../security/auth.guard';
 
 const routes: Routes = [
   {path: 'category', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule) },

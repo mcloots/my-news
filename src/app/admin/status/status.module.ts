@@ -4,6 +4,8 @@ import {StatusFormComponent} from './status-form/status-form.component';
 import {SharedModule} from '../../shared/shared.module';
 import {StatusService} from './status.service';
 import {StatusRoutingModule} from './status-routing.module';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {SecurityInterceptor} from '../../security/security.interceptor';
 
 
 @NgModule({
@@ -20,7 +22,12 @@ import {StatusRoutingModule} from './status-routing.module';
     StatusFormComponent
   ],
   providers: [
-    StatusService
+    StatusService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SecurityInterceptor,
+      multi: true
+    }
   ]
 })
 export class StatusModule {

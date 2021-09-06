@@ -7,6 +7,10 @@ import {MenuComponent} from './menu/menu.component';
 import {HomeComponent} from './home/home.component';
 import {SharedModule} from './shared/shared.module';
 import {ArticleModule} from './article/article.module';
+import {SecurityModule} from './security/security.module';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {SecurityInterceptor} from './security/security.interceptor';
+import {AuthGuard} from './security/auth.guard';
 
 @NgModule({
   declarations: [
@@ -18,9 +22,13 @@ import {ArticleModule} from './article/article.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    ArticleModule
+    ArticleModule,
+    SecurityModule
   ],
-  providers: [],
+  providers: [
+
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
