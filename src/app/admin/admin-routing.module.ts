@@ -7,8 +7,8 @@ import {CategoryFormComponent} from './category/category-form/category-form.comp
 import {AuthGuard} from '../security/auth.guard';
 
 const routes: Routes = [
-  {path: 'category', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule), canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
-  {path: 'status', loadChildren: () => import('./status/status.module').then(m => m.StatusModule), canActivate: [AuthGuard], canActivateChild: [AuthGuard]  },
+  {path: 'category', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule) },
+  {path: 'status', loadChildren: () => import('./status/status.module').then(m => m.StatusModule) },
 ];
 
 @NgModule({

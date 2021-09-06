@@ -8,12 +8,13 @@ import { HomeComponent } from './home/home.component';
 import {StatusListComponent} from './admin/status/status-list/status-list.component';
 import {StatusFormComponent} from './admin/status/status-form/status-form.component';
 import {SecurityComponent} from './security/security/security.component';
+import {AuthGuard} from './security/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'article', component: ArticleComponent },
   { path: 'article/:id', component: ArticleDetailComponent },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuard], canActivateChild: [AuthGuard]},
   { path: 'login', component: SecurityComponent},
   { path: 'register', component: SecurityComponent},
   { path: 'logout', component: SecurityComponent}

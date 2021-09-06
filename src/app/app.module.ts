@@ -26,11 +26,7 @@ import {AuthGuard} from './security/auth.guard';
     SecurityModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: SecurityInterceptor,
-      multi: true
-    },
+
     AuthGuard
   ],
   bootstrap: [AppComponent]
