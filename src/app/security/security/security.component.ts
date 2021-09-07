@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../user';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {authenticatedUser} from '../../store/actions/user.actions';
 
 @Component({
   selector: 'app-security',
@@ -18,8 +21,12 @@ export class SecurityComponent implements OnInit {
   isRegister: boolean = false;
   isLogout: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {
+  //users$: Observable<User[]>;
 
+  constructor(private authService: AuthService, private router: Router, private store: Store<{ user: User[]}>) {
+    store.select('user').subscribe(r => {
+      console.log(r);
+    });
   }
 
   ngOnInit(): void {
@@ -53,6 +60,9 @@ export class SecurityComponent implements OnInit {
         this.errorMessage = '';
         // save access token localstorage
         localStorage.setItem('token', result.accessToken);
+        const testArray: User[] = [];
+        testArray.push(result.user);
+        this.store.dispatch(authenticatedUser({ user: testArray }));
         this.router.navigate(['']);
       }, error => {
         this.errorMessage = 'Email/password not correct!';

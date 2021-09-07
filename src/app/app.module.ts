@@ -11,6 +11,8 @@ import {SecurityModule} from './security/security.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SecurityInterceptor} from './security/security.interceptor';
 import {AuthGuard} from './security/auth.guard';
+import {StoreModule} from '@ngrx/store';
+import {userReducer} from './store/reducers/user.reducer';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,9 @@ import {AuthGuard} from './security/auth.guard';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    StoreModule.forRoot({
+      user: userReducer
+    }),
     ArticleModule,
     SecurityModule
   ],

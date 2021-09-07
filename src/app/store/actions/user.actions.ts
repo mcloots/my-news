@@ -1,4 +1,4 @@
-import {createAction} from '@ngrx/store';
+import {createAction, props} from '@ngrx/store';
+import {User} from '../../security/user';
 
-export const loginUser = createAction('[Security Component] Login');
-export const logoutUser = createAction('[Security Component] Logout');
+export const authenticatedUser = createAction('[Security Component] Authenticated', props<{ user: User[] }>());
