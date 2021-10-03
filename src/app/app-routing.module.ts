@@ -9,11 +9,13 @@ import {StatusListComponent} from './admin/status/status-list/status-list.compon
 import {StatusFormComponent} from './admin/status/status-form/status-form.component';
 import {SecurityComponent} from './security/security/security.component';
 import {AuthGuard} from './security/auth.guard';
+import {ArticleFormComponent} from './article/article-form/article-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'article', component: ArticleComponent },
   { path: 'article/:id', component: ArticleDetailComponent },
+  { path: 'newarticle', component: ArticleFormComponent, canActivate: [AuthGuard] },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuard], canActivateChild: [AuthGuard]},
   { path: 'login', component: SecurityComponent},
   { path: 'register', component: SecurityComponent},

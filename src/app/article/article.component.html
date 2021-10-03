@@ -15,6 +15,6 @@
     <p *ngIf="!isDetail"><button (click)="detail(article.id)">Read more</button></p>
     <p *ngIf="isDetail"><button (click)="back()">Back</button></p>
     <footer>
-        <p>Author: {{article.author}}, Published: {{article.publishDate}}</p>
+        <p>Author: {{article.author}}, Published: {{article.publishDate | date:'medium' }}</p>
     </footer>
 </article>

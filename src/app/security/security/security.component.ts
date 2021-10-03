@@ -53,6 +53,8 @@ export class SecurityComponent implements OnInit {
         this.errorMessage = '';
         // save access token localstorage
         localStorage.setItem('token', result.accessToken);
+        localStorage.setItem('id', result.user.id.toString());
+        localStorage.setItem('email', result.user.email);
         this.router.navigate(['']);
       }, error => {
         this.errorMessage = 'Email/password not correct!';

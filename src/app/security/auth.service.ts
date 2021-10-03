@@ -16,6 +16,16 @@ export class AuthService {
     return localStorage.getItem('token') ?? '';
   }
 
+  getUser(): User | null {
+    if (this.isLoggedIn()){
+      return { id : parseInt(localStorage.getItem('id') ?? '0') ,
+        email: localStorage.getItem('email') ?? '', password: '',
+        token: this.getToken()  };
+    } else {
+      return null;
+    }
+  }
+
   deleteToken(): void {
     localStorage.removeItem('token');
   }

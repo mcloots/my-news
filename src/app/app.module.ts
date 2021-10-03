@@ -11,6 +11,10 @@ import {SecurityModule} from './security/security.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SecurityInterceptor} from './security/security.interceptor';
 import {AuthGuard} from './security/auth.guard';
+import {AngularFireModule} from '@angular/fire/compat';
+import {environment} from '../environments/environment';
+import {AngularFireStorageModule} from '@angular/fire/compat/storage';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import {AuthGuard} from './security/auth.guard';
     AppRoutingModule,
     SharedModule,
     ArticleModule,
-    SecurityModule
+    SecurityModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
   ],
   providers: [
 

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Article } from './article';
 
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import {Status} from '../admin/status/status';
 
 @Injectable({
   providedIn: 'root'
@@ -22,4 +23,14 @@ export class ArticleService {
     return this.httpClient.get<Article>("http://localhost:3000/articles/" + id);
   }
 
+  getArticlesByCategoryId(categoryId: number): Observable<Article[]> {
+    return this.httpClient.get<Article[]>("http://localhost:3000/articles?categoryId=" + categoryId);
+  }
+
+  postArticle(article: Article): Observable<Article> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.post<Article>("http://localhost:3000/articles", article, {headers: headers});
+  }
 }

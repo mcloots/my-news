@@ -1,0 +1,52 @@
+<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
+<!--<div class="alert alert-warning" role="warning">
+  <p>Form Status: {{ articleForm.status }}</p>
+</div>-->
+<form (ngSubmit)="onSubmit()" [formGroup]="articleForm">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" name="title" placeholder="Title" formControlName="title" minlength="2">
+  </div>
+  <div class="form-group">
+    <label for="subtitle">Subtitle</label>
+    <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Subtitle" formControlName="subtitle" minlength="2">
+  </div>
+  <div class="form-group">
+    <select class="custom-select" formControlName="categoryId">
+      <option value="" disabled>Choose the category</option>
+      <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="content">Content</label>
+    <textarea  class="form-control" id="content" name="content" placeholder="Content" formControlName="content" minlength="2" rows="10"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="image">Image</label>
+    <input
+      id="image"
+      type="file"
+      class="form-control"
+      #articleImage
+      autocomplete="off"
+      (change)="onImageSelected($event)"
+      accept=".png,.jpg">
+    <div *ngIf="isSubmitted">
+      <progress max="100" [value]="(uploadProgress)"></progress>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="imageCaption">Image caption</label>
+    <input type="text" class="form-control" id="imageCaption" name="imageCaption" placeholder="Image caption" formControlName="imageCaption" minlength="2">
+  </div>
+  <div class="form-group">
+    <select class="custom-select" formControlName="statusId">
+      <option *ngFor="let status of statuses; let i = index" [ngValue]="status.id">{{status.name}}</option>
+    </select>
+  </div>
+  <!--  <button type="button" class="btn btn-secondary mr-2" (click)="setDefaults()" >Set default values</button>-->
+  <button type="submit" class="btn btn-primary" *ngIf="isAdd" [disabled]="!articleForm.valid || isSubmitted">Add new article</button>
+  <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!articleForm.valid || isSubmitted">Save</button>
+</form>

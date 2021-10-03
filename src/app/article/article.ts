@@ -6,6 +6,7 @@ export interface Article {
     imageCaption: string;
     content: string;
     author: string;
+    authorId: number;
     publishDate: string;
     categoryId: number;
     statusId: number;
