@@ -41,7 +41,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     author: new FormControl(''),
     categoryId: new FormControl('', [Validators.required]),
     statusId: new FormControl(1, [Validators.required]), // default status is draft
-    publishDate: new FormControl(new Date()),
+    // publishDate: new FormControl(new Date()),
 
   });
 

@@ -23,8 +23,12 @@ export class ArticleService {
     return this.httpClient.get<Article>("http://localhost:3000/articles/" + id);
   }
 
-  getArticlesByCategoryId(categoryId: number): Observable<Article[]> {
-    return this.httpClient.get<Article[]>("http://localhost:3000/articles?categoryId=" + categoryId);
+  getArticlesByStatusId(statusId: number): Observable<Article[]> {
+    return this.httpClient.get<Article[]>("http://localhost:3000/articles?statusId=" + statusId);
+  }
+
+  getArticlesByCategoryAndStatus(categoryId: number, statusId: number): Observable<Article[]> {
+    return this.httpClient.get<Article[]>("http://localhost:3000/articles?categoryId=" + categoryId + "&statusId=" + statusId);
   }
 
   postArticle(article: Article): Observable<Article> {

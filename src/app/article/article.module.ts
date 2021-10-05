@@ -6,20 +6,23 @@ import {SharedModule} from '../shared/shared.module';
 import { ArticleFormComponent } from './article-form/article-form.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SecurityInterceptor} from '../security/security.interceptor';
+import { CategoryFilterComponent } from './category-filter/category-filter.component';
 
 
 @NgModule({
   declarations: [
     ArticleComponent,
     ArticleDetailComponent,
-    ArticleFormComponent
+    ArticleFormComponent,
+    CategoryFilterComponent
   ],
   imports: [
     SharedModule
   ],
   exports: [
     ArticleComponent,
-    ArticleDetailComponent
+    ArticleDetailComponent,
+    CategoryFilterComponent
   ],
   providers: [
     ArticleService,

@@ -29,7 +29,6 @@
       id="image"
       type="file"
       class="form-control"
-      #articleImage
       autocomplete="off"
       (change)="onImageSelected($event)"
       accept=".png,.jpg">
@@ -42,7 +41,8 @@
     <input type="text" class="form-control" id="imageCaption" name="imageCaption" placeholder="Image caption" formControlName="imageCaption" minlength="2">
   </div>
   <div class="form-group">
-    <select class="custom-select" formControlName="statusId">
+    <label for="status">Status</label>
+    <select class="custom-select" formControlName="statusId" id="status">
       <option *ngFor="let status of statuses; let i = index" [ngValue]="status.id">{{status.name}}</option>
     </select>
   </div>

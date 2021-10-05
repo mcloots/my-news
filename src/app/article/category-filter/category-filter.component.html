@@ -1,0 +1,10 @@
+<form (ngSubmit)="onSubmit()" #filterForm="ngForm">
+  <div class="form-group">
+    <label for="category">Choose category:</label>
+    <select class="custom-select" [(ngModel)]="categoryId" name="category" id="category" (change)="onCategoryChange($event)">
+      <option value="0">All categories</option>
+      <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+    </select>
+  </div>
+</form>
+
