@@ -1,0 +1,31 @@
+<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
+<button type="button" class="btn btn-success addBtn" (click)="add()"><i class="fas fa-plus"></i> Add new article</button>
+<table class="table" *ngIf="articles && articles.length > 0">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Title</th>
+    <th scope="col">Subtitle</th>
+    <th scope="col">Category</th>
+    <th scope="col">Status</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let ar of articles">
+    <th scope="row">{{ar.id}}</th>
+    <td>{{ar.title}}</td>
+    <td>{{ar.subtitle}}</td>
+    <td>{{ar.category.name}}</td>
+    <td>{{ar.status.name}}</td>
+    <td>
+      <!-- <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button> -->
+      <button type="button" class="btn btn-success" (click)="edit(ar.id)"><i class="fas fa-edit"></i></button>
+      <button type="button" class="btn btn-danger" (click)="delete(ar.id)"><i class="far fa-trash-alt"></i></button>
+      <button *ngIf="isUnpublished(ar)" type="button" class="btn btn-primary" (click)="publish(ar.id)"><i class="fas fa-globe"></i></button>
+    </td>
+  </tr>
+  </tbody>
+</table>

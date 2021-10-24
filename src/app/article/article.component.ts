@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Article } from '../article/article';
+import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Article} from '../article/article';
 
 @Component({
   selector: 'app-article',
@@ -8,11 +8,26 @@ import { Article } from '../article/article';
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
-  @Input() article: Article = { id: 0, title: "", subtitle: "", imageUrl: "", imageCaption: "", content: "", author: "", authorId: 0, publishDate: "", categoryId: 0, statusId: 0 };
+  @Input() article: Article = {
+    id: 0,
+    title: '',
+    subtitle: '',
+    imageUrl: '',
+    imageCaption: '',
+    content: '',
+    author: '',
+    authorId: 0,
+    publishDate: '',
+    categoryId: 0,
+    statusId: 0,
+    status: {id: 0, name: '', active: false},
+    category: {id: 0, name: ''}
+  };
   @Input() isDetail: boolean = false;
-  @Input() backRoute: string = "";
+  @Input() backRoute: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }
@@ -23,6 +38,6 @@ export class ArticleComponent implements OnInit {
   }
 
   back() {
-      this.router.navigate([this.backRoute]);
+    this.router.navigate([this.backRoute]);
   }
 }

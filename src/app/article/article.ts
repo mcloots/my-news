@@ -1,3 +1,6 @@
+import {Status} from '../admin/status/status';
+import {Category} from '../admin/category/category';
+
 export interface Article {
     id: number;
     title: string;
@@ -10,4 +13,6 @@ export interface Article {
     publishDate: string;
     categoryId: number;
     statusId: number;
+    status: Status;
+    category: Category;
 }
