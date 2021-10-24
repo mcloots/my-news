@@ -37,6 +37,7 @@ export class ArticleListComponent implements OnInit {
 
   edit(id: number) {
     //TODO
+    this.router.navigate(['editarticle/' + id]);
   }
 
   delete(id: number) {

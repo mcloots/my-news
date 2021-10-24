@@ -1,3 +1,4 @@
+<h1>{{getTitle()}}</h1>
 <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
   {{errorMessage}}
 </div>
@@ -35,6 +36,9 @@
     <div *ngIf="isSubmitted">
       <progress max="100" [value]="(uploadProgress)"></progress>
     </div>
+  </div>
+  <div *ngIf="isEdit && imageSrc">
+    <img src="{{imageSrc}}" alt="article image">
   </div>
   <div class="form-group">
     <label for="imageCaption">Image caption</label>

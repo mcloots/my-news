@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {createOneCapitalLetterValidator} from '../../shared/one-capital-letter-validator';
-import {Router} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ArticleService} from '../article.service';
 import {Subscription} from 'rxjs';
 import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from '@angular/fire/compat/storage';
@@ -59,15 +59,40 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
   statuses: Status[] = [];
 
   constructor(private router: Router,
+              private route: ActivatedRoute,
               private articleService: ArticleService,
               private categoryService: CategoryService,
               private statusService: StatusService,
               private authService: AuthService,
               private angularFireStorage: AngularFireStorage) {
     this.isAdd = this.router.url === '/newarticle';
+    this.isEdit = !this.isAdd;
   }
 
   ngOnInit(): void {
+    // get article if in edit
+    // get article if in edit
+    if (this.isEdit) {
+      const id = this.route.snapshot.paramMap.get('id');
+      if (id != null) {
+        this.articleService.getArticleById(+id).subscribe(result => {
+          this.imageSrc = result.imageUrl;
+          this.articleForm.patchValue({
+            id: result.id,
+            title: result.title,
+            subtitle: result.subtitle,
+            imageUrl: result.imageUrl,
+            imageCaption: result.imageCaption,
+            content: result.content,
+            authorId: result.authorId,
+            author: result.author,
+            categoryId: result.categoryId,
+            statusId: result.statusId,
+          });
+        });
+      }
+    }
+
     // get categories
     this.categories$ = this.categoryService.getCategories().subscribe(result => {
       this.categories = result;
@@ -86,13 +111,20 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
         author: author.email,
       });
     }
-
   }
 
   ngOnDestroy(): void {
     this.postArticle$.unsubscribe();
     this.categories$.unsubscribe();
     this.statuses$.unsubscribe();
+  }
+
+  getTitle(): string {
+    if (this.isAdd) {
+      return 'Add new article';
+    } else {
+      return 'Edit article';
+    }
   }
 
   onImageSelected(event: any): void {
@@ -102,6 +134,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     // create a reference to the storage bucket location
     this.ref = this.angularFireStorage.ref(this.filePath);
     this.imageFile = event.target.files[0];
+    this.imageSrc = '';
   }
 
   onSubmit(): void {
