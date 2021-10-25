@@ -10,12 +10,15 @@ import {StatusFormComponent} from './admin/status/status-form/status-form.compon
 import {SecurityComponent} from './security/security/security.component';
 import {AuthGuard} from './security/auth.guard';
 import {ArticleFormComponent} from './article/article-form/article-form.component';
+import {ArticleListComponent} from './article/article-list/article-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'article', component: ArticleComponent },
   { path: 'article/:id', component: ArticleDetailComponent },
+  { path: 'articles', component: ArticleListComponent, canActivate: [AuthGuard] },
   { path: 'newarticle', component: ArticleFormComponent, canActivate: [AuthGuard] },
+  { path: 'editarticle/:id', component: ArticleFormComponent, canActivate: [AuthGuard] },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuard], canActivateChild: [AuthGuard]},
   { path: 'login', component: SecurityComponent},
   { path: 'register', component: SecurityComponent},

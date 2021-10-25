@@ -57,9 +57,6 @@ export class ArticleService {
   }
 
   publishArticle(id: number): Observable<Article> {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-
     return this.getArticleById(id).pipe(
       switchMap(article => {
         article.statusId = StatusEnum.PUBLISHED;
