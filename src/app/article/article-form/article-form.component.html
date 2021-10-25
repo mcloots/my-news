@@ -33,7 +33,7 @@
       autocomplete="off"
       (change)="onImageSelected($event)"
       accept=".png,.jpg">
-    <div *ngIf="isSubmitted">
+    <div *ngIf="isSubmitted && uploadProgress">
       <progress max="100" [value]="(uploadProgress)"></progress>
     </div>
   </div>

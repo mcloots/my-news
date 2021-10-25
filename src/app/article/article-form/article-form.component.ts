@@ -18,13 +18,16 @@ import {Status} from '../../admin/status/status';
   styleUrls: ['./article-form.component.scss']
 })
 export class ArticleFormComponent implements OnInit, OnDestroy {
+  articleId: number = 0;
   isAdd: boolean = false;
   isEdit: boolean = false;
+  isImageChanged: boolean = false;
 
   isSubmitted: boolean = false;
   errorMessage: string = '';
 
   postArticle$: Subscription = new Subscription();
+  putArticle$: Subscription = new Subscription();
   categories$: Subscription = new Subscription();
   statuses$: Subscription = new Subscription();
 
@@ -32,6 +35,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
 
 // reactive form
   articleForm = new FormGroup({
+    id: new FormControl(''),
     title: new FormControl('', [Validators.required]),
     subtitle: new FormControl('', [Validators.required]),
     imageUrl: new FormControl(''),
@@ -75,6 +79,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     if (this.isEdit) {
       const id = this.route.snapshot.paramMap.get('id');
       if (id != null) {
+        this.articleId = +id;
         this.articleService.getArticleById(+id).subscribe(result => {
           this.imageSrc = result.imageUrl;
           this.articleForm.patchValue({
@@ -117,6 +122,7 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     this.postArticle$.unsubscribe();
     this.categories$.unsubscribe();
     this.statuses$.unsubscribe();
+    this.putArticle$.unsubscribe();
   }
 
   getTitle(): string {
@@ -134,16 +140,16 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
     // create a reference to the storage bucket location
     this.ref = this.angularFireStorage.ref(this.filePath);
     this.imageFile = event.target.files[0];
-    this.imageSrc = '';
+    this.isImageChanged = true;
   }
 
   onSubmit(): void {
     this.isSubmitted = true;
-    if (this.imageFile === undefined) {
+    if (this.imageFile === undefined && this.isAdd) {
       this.isSubmitted = false;
       this.errorMessage = 'No image selected!';
     } else {
-      if (this.isAdd) {
+      if (this.isImageChanged) {
         this.task = this.angularFireStorage.upload(this.filePath, this.imageFile);
         this.task.snapshotChanges().subscribe(result => {
           this.ref?.getDownloadURL().subscribe(url => {
@@ -151,18 +157,36 @@ export class ArticleFormComponent implements OnInit, OnDestroy {
               imageUrl: url
             });
             if (url !== undefined) {
-              this.postArticle$ = this.articleService.postArticle(this.articleForm.value).subscribe(result => {
-                  this.router.navigateByUrl('/');
-                },
-                error => {
-                  this.isSubmitted = false;
-                  this.errorMessage = error.message;
-                });
+              this.submitData();
             }
           });
         });
         this.task.percentageChanges().subscribe(p => this.uploadProgress = p);
+      } else {
+        this.submitData();
       }
+    }
+  }
+
+  submitData(): void {
+    if (this.isAdd) {
+      //Add
+      this.postArticle$ = this.articleService.postArticle(this.articleForm.value).subscribe(result => {
+          this.router.navigateByUrl('/');
+        },
+        error => {
+          this.isSubmitted = false;
+          this.errorMessage = error.message;
+        });
+    } else {
+      //edit
+      this.putArticle$ = this.articleService.putArticle(this.articleId, this.articleForm.value).subscribe(result => {
+          this.router.navigateByUrl('/');
+        },
+        error => {
+          this.isSubmitted = false;
+          this.errorMessage = error.message;
+        });
     }
   }
 
