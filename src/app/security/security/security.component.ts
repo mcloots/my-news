@@ -23,6 +23,11 @@ export class SecurityComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.isLoggedinSubject.subscribe(
+      result => {
+        console.log(result);
+      }
+    )
     switch (this.router.url) {
       case '/login': {
         this.isLogin = true;
@@ -55,7 +60,10 @@ export class SecurityComponent implements OnInit {
         localStorage.setItem('token', result.accessToken);
         localStorage.setItem('id', result.user.id.toString());
         localStorage.setItem('email', result.user.email);
-        this.router.navigate(['']);
+
+        this.authService.isLoggedinSubject.next(result.accessToken ? true : false);
+
+        //this.router.navigate(['']);
       }, error => {
         this.errorMessage = 'Email/password not correct!';
         this.isSubmitted = false;

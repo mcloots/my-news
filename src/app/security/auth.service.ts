@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {User} from './user';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {UserResponse} from './userResponse';
 
 @Injectable({
@@ -11,6 +11,8 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) {
   }
+
+  isLoggedinSubject = new BehaviorSubject(false);
 
   getToken(): string {
     return localStorage.getItem('token') ?? '';
